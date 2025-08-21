@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - Cloud 9 Bed & Breakfast</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500&display=swap">
+    <style>
+        :root {
+            --primary: #0D47A1;
+            --secondary: #90CAF9;
+            --accent: #E3F2FD;
+            --dark: #1565C0;
+            --light: #BBDEFB;
+            --text: #333;
+            --white: #ffffff;
+            --kenya-green: #006600;
+            --kenya-red: #CC0000;
+            --kenya-black: #000000;
+            --kenya-yellow: #FFFF00;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: var(--text);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--kenya-black) 0%, var(--primary) 100%);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo img {
+            height: 60px;
+            transition: transform 0.3s;
+        }
+        
+        .logo img:hover {
+            transform: scale(1.05);
+        }
+        
+        .logo-text {
+            color: white;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+        }
+        
+        .logo-text span {
+            color: var(--kenya-yellow);
+        }
+        
+        .kenya-flag {
+            display: flex;
+            height: 10px;
+            margin-top: 5px;
+        }
+        
+        .kenya-flag div {
+            height: 100%;
+            flex: 1;
+        }
+        
+        .kenya-black {
+            background-color: var(--kenya-black);
+        }
+        
+        .kenya-red {
+            background-color: var(--kenya-red);
+        }
+        
+        .kenya-green {
+            background-color: var(--kenya-green);
+        }
+        
+        .kenya-white {
+            background-color: white;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin: 0 12px;
+        }
+        
+        nav ul li a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 12px;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+        
+        nav ul li a:hover {
+            background-color: var(--kenya-red);
+        }
+        
+        .menu-toggle {
+            display: none;
+            color: var(--white);
+            font-size: 24px;
+            cursor: pointer;
+        }
+        
+        /* Main Content */
+        main {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+        
+        .register-container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            width: 100%;
+            max-width: 500px;
+            overflow: hidden;
+            animation: fadeIn 0.5s ease-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .register-header {
+            background: linear-gradient(135deg, var(--kenya-black) 0%, var(--primary) 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .register-header h1 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+        }
+        
+        .register-header p {
+            opacity: 0.9;
+        }
+        
+        .register-form {
+            padding: 30px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--primary);
+        }
+        
+        .input-with-icon {
+            position: relative;
+        }
+        
+        .input-with-icon i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--kenya-green);
+        }
+        
+        .input-with-icon input {
+            padding-left: 45px;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 14px;
+            border: 2px solid #e1e5eb;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+        
+        .form-group input:focus {
+            border-color: var(--kenya-green);
+            box-shadow: 0 0 0 3px rgba(0, 102, 0, 0.1);
+            outline: none;
+        }
+        
+        .password-strength {
+            height: 5px;
+            background: #eee;
+            border-radius: 3px;
+            margin-top: 8px;
+            overflow: hidden;
+        }
+        
+        .strength-meter {
+            height: 100%;
+            width: 0;
+            transition: width 0.3s, background 0.3s;
+        }
+        
+        .password-requirements {
+            margin-top: 10px;
+            font-size: 0.85rem;
+            color: #666;
+        }
+        
+        .requirement {
+            display: flex;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+        
+        .requirement i {
+            margin-right: 5px;
+            font-size: 12px;
+        }
+        
+        .requirement.met {
+            color: var(--kenya-green);
+        }
+        
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, var(--kenya-green) 0%, var(--primary) 100%);
+            color: var(--white);
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 8px;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            font-size: 16px;
+            margin-top: 10px;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .login-link {
+            text-align: center;
+            margin-top: 25px;
+            color: #666;
+        }
+        
+        .login-link a {
+            color: var(--kenya-green);
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+        
+        .divider {
+            display: flex;
+            align-items: center;
+            margin: 25px 0;
+        }
+        
+        .divider::before, .divider::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: #e1e5eb;
+        }
+        
+        .divider span {
+            padding: 0 15px;
+            color: #666;
+            font-size: 14px;
+        }
+        
+        .social-login {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: #f5f5f5;
+            color: #333;
+            font-size: 18px;
+            transition: all 0.3s;
+        }
+        
+        .social-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .social-btn.facebook { color: #3b5998; }
+        .social-btn.google { color: #DB4437; }
+        
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, var(--kenya-black) 0%, var(--kenya-green) 100%);
+            color: var(--white);
+            padding: 20px 0;
+            text-align: center;
+            margin-top: auto;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            text-align: left;
+            margin-bottom: 20px;
+        }
+        
+        .footer-column h3 {
+            margin-bottom: 15px;
+            position: relative;
+            padding-bottom: 10px;
+            color: var(--kenya-yellow);
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--kenya-red);
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column ul li a {
+            color: var(--light);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: var(--kenya-yellow);
+            padding-left: 5px;
+        }
+        
+        .copyright {
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+            
+            nav ul {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: linear-gradient(135deg, var(--kenya-black) 0%, var(--primary) 100%);
+                padding: 20px;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+            }
+            
+            nav ul.show {
+                display: flex;
+            }
+            
+            nav ul li {
+                margin: 10px 0;
+            }
+            
+            .register-container {
+                margin: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <img src="https://via.placeholder.com/150x60/0D47A1/FFFFFF?text=Cloud+9+B&B" alt="Cloud 9 Bed & Breakfast Logo">
+                <div>
+                    <div class="logo-text">Cloud <span>9</span></div>
+                    <div class="kenya-flag">
+                        <div class="kenya-black"></div>
+                        <div class="kenya-red"></div>
+                        <div class="kenya-green"></div>
+                        <div class="kenya-white"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+            
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="booking.html">Book a Room</a></li>
+                    <li><a href="register.html">Register</a></li>
+                    <li><a href="login.html">Login</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <div class="register-container">
+            <div class="register-header">
+                <h1>Create Account</h1>
+                <p>Join Cloud 9 for exclusive benefits and offers</p>
+            </div>
+            
+            <form class="register-form" id="registrationForm">
+                <div class="form-group">
+                    <label for="fullName">Full Name</label>
+                    <div class="input-with-icon">
+                        <i class="fas fa-user"></i>
+                        <input type="text" id="fullName" name="fullName" placeholder="Enter your full name" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <div class="input-with-icon">
+                        <i class="fas fa-envelope"></i>
+                        <input type="email" id="email" name="email" placeholder="Enter your email address" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <div class="input-with-icon">
+                        <i class="fas fa-phone"></i>
+                        <input type="tel" id="phone" name="phone" placeholder="e.g. +254 713 042 748" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <div class="input-with-icon">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" id="password" name="password" placeholder="Create a strong password" required>
+                    </div>
+                    <div class="password-strength">
+                        <div class="strength-meter" id="passwordStrength"></div>
+                    </div>
+                    <div class="password-requirements">
+                        <div class="requirement" id="lengthReq">
+                            <i class="fas fa-times"></i> At least 8 characters
+                        </div>
+                        <div class="requirement" id="numberReq">
+                            <i class="fas fa-times"></i> Contains a number
+                        </div>
+                        <div class="requirement" id="specialReq">
+                            <i class="fas fa-times"></i> Contains a special character
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="confirmPassword">Confirm Password</label>
+                    <div class="input-with-icon">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm your password" required>
+                    </div>
+                    <div id="passwordMatch" style="font-size: 0.85rem; margin-top: 5px;"></div>
+                </div>
+                
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" id="terms" name="terms" required>
+                        I agree to the <a href="#" style="color: var(--kenya-green);">Terms & Conditions</a> and <a href="#" style="color: var(--kenya-green);">Privacy Policy</a>
+                    </label>
+                </div>
+                
+                <button type="submit" class="btn">Create Account</button>
+                
+                <div class="login-link">
+                    Already have an account? <a href="login.html">Sign In</a>
+                </div>
+                
+                <div class="divider">
+                    <span>Or register with</span>
+                </div>
+                
+                <div class="social-login">
+                    <a href="#" class="social-btn facebook">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="#" class="social-btn google">
+                        <i class="fab fa-google"></i>
+                    </a>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Cloud 9 B&B</h3>
+                    <p>Experience authentic Kenyan hospitality in the heart of Kirinyaga County. Your perfect getaway awaits at Cloud 9 Bed & Breakfast.</p>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="booking.html">Book a Room</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="login.html">Login</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contact Info</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> Along Nairobi-Nyeri Highway, Kibingoti, Kirinyaga County</li>
+                        <li><i class="fas fa-phone"></i> +254 713 042 748</li>
+                        <li><i class="fas fa-envelope"></i> info@cloud9bnbkenya.com</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2024 Cloud 9 Bed & Breakfast Kenya. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            document.querySelector('nav ul').classList.toggle('show');
+        });
+
+        // Password strength checker
+        const passwordInput = document.getElementById('password');
+        const strengthMeter = document.getElementById('passwordStrength');
+        const lengthReq = document.getElementById('lengthReq');
+        const numberReq = document.getElementById('numberReq');
+        const specialReq = document.getElementById('specialReq');
+        const confirmPassword = document.getElementById('confirmPassword');
+        const passwordMatch = document.getElementById('passwordMatch');
+
+        passwordInput.addEventListener('input', function() {
+            const password = passwordInput.value;
+            let strength = 0;
+            
+            // Check password requirements
+            const hasLength = password.length >= 8;
+            const hasNumber = /\d/.test(password);
+            const hasSpecial = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+            
+            // Update requirement indicators
+            updateRequirement(lengthReq, hasLength);
+            updateRequirement(numberReq, hasNumber);
+            updateRequirement(specialReq, hasSpecial);
+            
+            // Calculate strength
+            if (hasLength) strength += 33;
+            if (hasNumber) strength += 33;
+            if (hasSpecial) strength += 34;
+            
+            // Update strength meter
+            strengthMeter.style.width = strength + '%';
+            
+            if (strength < 33) {
+                strengthMeter.style.backgroundColor = '#ff4d4d';
+            } else if (strength < 66) {
+                strengthMeter.style.backgroundColor = '#ffa64d';
+            } else {
+                strengthMeter.style.backgroundColor = '#2eb82e';
+            }
+        });
+
+        function updateRequirement(element, met) {
+            if (met) {
+                element.classList.add('met');
+                element.querySelector('i').className = 'fas fa-check';
+            } else {
+                element.classList.remove('met');
+                element.querySelector('i').className = 'fas fa-times';
+            }
+        }
+
+        // Password confirmation check
+        confirmPassword.addEventListener('input', function() {
+            if (confirmPassword.value !== passwordInput.value) {
+                passwordMatch.textContent = 'Passwords do not match';
+                passwordMatch.style.color = '#ff4d4d';
+            } else {
+                passwordMatch.textContent = 'Passwords match';
+                passwordMatch.style.color = '#2eb82e';
+            }
+        });
+
+        // Form submission
+        document.getElementById('registrationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Basic validation
+            if (passwordInput.value !== confirmPassword.value) {
+                alert('Passwords do not match!');
+                return;
+            }
+            
+            if (!document.getElementById('terms').checked) {
+                alert('Please accept the Terms & Conditions');
+                return;
+            }
+            
+            // If validation passes, show success message
+            alert('Registration successful! Welcome to Cloud 9.');
+            this.reset();
+            strengthMeter.style.width = '0';
+            passwordMatch.textContent = '';
+            
+            // Reset requirement indicators
+            [lengthReq, numberReq, specialReq].forEach(req => {
+                req.classList.remove('met');
+                req.querySelector('i').className = 'fas fa-times';
+            });
+        });
+    </script>
+</body>
+</html>

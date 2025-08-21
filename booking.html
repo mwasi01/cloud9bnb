@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Your Stay - Cloud 9 Bed & Breakfast</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500&display=swap">
+    <style>
+        :root {
+            --primary: #0D47A1;
+            --secondary: #90CAF9;
+            --accent: #E3F2FD;
+            --dark: #1565C0;
+            --light: #BBDEFB;
+            --text: #333;
+            --white: #ffffff;
+            --kenya-green: #006600;
+            --kenya-red: #CC0000;
+            --kenya-black: #000000;
+            --kenya-yellow: #FFFF00;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--accent);
+            color: var(--text);
+            line-height: 1.6;
+            background-image: linear-gradient(rgba(227, 242, 253, 0.9), rgba(227, 242, 253, 0.9)), url('https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--kenya-black) 0%, var(--primary) 100%);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo img {
+            height: 60px;
+            transition: transform 0.3s;
+        }
+        
+        .logo img:hover {
+            transform: scale(1.05);
+        }
+        
+        .logo-text {
+            color: white;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+        }
+        
+        .logo-text span {
+            color: var(--kenya-yellow);
+        }
+        
+        .kenya-flag {
+            display: flex;
+            height: 10px;
+            margin-top: 5px;
+        }
+        
+        .kenya-flag div {
+            height: 100%;
+            flex: 1;
+        }
+        
+        .kenya-black {
+            background-color: var(--kenya-black);
+        }
+        
+        .kenya-red {
+            background-color: var(--kenya-red);
+        }
+        
+        .kenya-green {
+            background-color: var(--kenya-green);
+        }
+        
+        .kenya-white {
+            background-color: white;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin: 0 12px;
+        }
+        
+        nav ul li a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 12px;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+        
+        nav ul li a:hover {
+            background-color: var(--kenya-red);
+        }
+        
+        .menu-toggle {
+            display: none;
+            color: var(--white);
+            font-size: 24px;
+            cursor: pointer;
+        }
+        
+        /* Booking Section */
+        .booking-section {
+            padding: 60px 0;
+        }
+        
+        .booking-container {
+            display: flex;
+            gap: 40px;
+            margin-top: 30px;
+        }
+        
+        .booking-form {
+            flex: 1;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .booking-info {
+            flex: 1;
+            background: linear-gradient(135deg, var(--kenya-green) 0%, var(--primary) 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            color: var(--primary);
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(to right, var(--kenya-black), var(--kenya-red), var(--kenya-green));
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--text);
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--kenya-green);
+            box-shadow: 0 0 0 3px rgba(0, 102, 0, 0.1);
+        }
+        
+        .form-row {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .form-row .form-group {
+            flex: 1;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 15px 30px;
+            background: linear-gradient(135deg, var(--kenya-green) 0%, var(--primary) 100%);
+            color: var(--white);
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            font-size: 18px;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .info-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            backdrop-filter: blur(5px);
+        }
+        
+        .info-card h3 {
+            margin-bottom: 15px;
+            color: var(--kenya-yellow);
+        }
+        
+        .info-card ul {
+            list-style: none;
+            padding-left: 20px;
+        }
+        
+        .info-card ul li {
+            margin-bottom: 10px;
+            position: relative;
+        }
+        
+        .info-card ul li:before {
+            content: "•";
+            color: var(--kenya-yellow);
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
+        
+        .room-option {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .room-option:hover {
+            border-color: var(--kenya-green);
+            background-color: rgba(0, 102, 0, 0.05);
+        }
+        
+        .room-option input[type="radio"] {
+            margin: 0;
+        }
+        
+        .room-thumb {
+            width: 80px;
+            height: 60px;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        
+        .room-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .room-desc {
+            flex: 1;
+        }
+        
+        .room-price {
+            font-weight: bold;
+            color: var(--kenya-green);
+        }
+        
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, var(--kenya-black) 0%, var(--kenya-green) 100%);
+            color: var(--white);
+            padding: 40px 0 20px;
+            text-align: center;
+            margin-top: 60px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            text-align: left;
+            margin-bottom: 30px;
+        }
+        
+        .footer-column h3 {
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+            color: var(--kenya-yellow);
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--kenya-red);
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column ul li a {
+            color: var(--light);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: var(--kenya-yellow);
+            padding-left: 5px;
+        }
+        
+        .copyright {
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+            
+            nav ul {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: linear-gradient(135deg, var(--kenya-black) 0%, var(--primary) 100%);
+                padding: 20px;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+            }
+            
+            nav ul.show {
+                display: flex;
+            }
+            
+            nav ul li {
+                margin: 10px 0;
+            }
+            
+            .booking-container {
+                flex-direction: column;
+            }
+            
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <img src="c9bnblogo.jpeg" alt="Cloud 9 Bed & Breakfast Logo">
+                <div>
+                    <div class="logo-text">Cloud <span>9</span></div>
+                    <div class="kenya-flag">
+                        <div class="kenya-black"></div>
+                        <div class="kenya-red"></div>
+                        <div class="kenya-green"></div>
+                        <div class="kenya-white"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+            
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="booking.html">Book a Room</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="login.html">Login</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Booking Section -->
+    <section class="booking-section">
+        <div class="container">
+            <h2 class="section-title">Reserve Your Stay</h2>
+            
+            <div class="booking-container">
+                <div class="booking-form">
+                    <h3>Booking Details</h3>
+                    <form id="bookingForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="checkin">Check-In Date</label>
+                                <input type="date" id="checkin" name="checkin" class="form-control" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="checkout">Check-Out Date</label>
+                                <input type="date" id="checkout" name="checkout" class="form-control" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="guests">Number of Guests</label>
+                            <select id="guests" name="guests" class="form-control" required>
+                                <option value="1">1 Guest</option>
+                                <option value="2" selected>2 Guests</option>
+                                <option value="3">3 Guests</option>
+                                <option value="4">4 Guests</option>
+                                <option value="5">5+ Guests</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Room Type</label>
+                            
+                            <div class="room-option">
+                                <input type="radio" id="room-single" name="room-type" value="single" required>
+                                <div class="room-thumb">
+                                    <img src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Single Room">
+                                </div>
+                                <div class="room-desc">
+                                    <h4>Single Room</h4>
+                                    <p>Cozy room with garden view</p>
+                                </div>
+                                <div class="room-price">KES 5,500/night</div>
+                            </div>
+                            
+                            <div class="room-option">
+                                <input type="radio" id="room-double" name="room-type" value="double">
+                                <div class="room-thumb">
+                                    <img src="https://images.unsplash.com/photo-1445019980597-93fa8acb246c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Double Room">
+                                </div>
+                                <div class="room-desc">
+                                    <h4>Double Room</h4>
+                                    <p>Spacious room with mountain view</p>
+                                </div>
+                                <div class="room-price">KES 8,900/night</div>
+                            </div>
+                            
+                            <div class="room-option">
+                                <input type="radio" id="room-suite" name="room-type" value="suite">
+                                <div class="room-thumb">
+                                    <img src="https://images.unsplash.com/photo-1566665797739-1674de7a421a?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Suite">
+                                </div>
+                                <div class="room-desc">
+                                    <h4>Family Suite</h4>
+                                    <p>Luxury suite with separate living area</p>
+                                </div>
+                                <div class="room-price">KES 15,000/night</div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="name">Full Name</label>
+                                <input type="text" id="name" name="name" class="form-control" placeholder="Enter your full name" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="email">Email Address</label>
+                                <input type="email" id="email" name="email" class="form-control" placeholder="Enter your email" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="phone">Phone Number</label>
+                                <input type="tel" id="phone" name="phone" class="form-control" placeholder="Enter your phone number" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="country">Country</label>
+                                <input type="text" id="country" name="country" class="form-control" placeholder="Enter your country" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="requests">Special Requests</label>
+                            <textarea id="requests" name="requests" class="form-control" rows="4" placeholder="Any special requests?"></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn">Complete Booking</button>
+                    </form>
+                </div>
+                
+                <div class="booking-info">
+                    <h3>Why Book With Us?</h3>
+                    
+                    <div class="info-card">
+                        <h3><i class="fas fa-shield-alt"></i> Best Rate Guarantee</h3>
+                        <p>Find a lower rate elsewhere? We'll match it and give you an additional 10% off.</p>
+                    </div>
+                    
+                    <div class="info-card">
+                        <h3><i class="fas fa-utensils"></i> Complimentary Breakfast</h3>
+                        <p>Enjoy a delicious Kenyan breakfast included with every stay.</p>
+                    </div>
+                    
+                    <div class="info-card">
+                        <h3><i class="fas fa-wifi"></i> Free WiFi</h3>
+                        <p>Stay connected with our high-speed internet access throughout the property.</p>
+                    </div>
+                    
+                    <div class="info-card">
+                        <h3><i class="fas fa-map-marker-alt"></i> Perfect Location</h3>
+                        <p>Situated along the Nairobi-Nyeri Highway in Kibingoti, Kirinyaga County.</p>
+                    </div>
+                    
+                    <div class="info-card">
+                        <h3><i class="fas fa-concierge-bell"></i> Local Expertise</h3>
+                        <p>Our staff can help you plan excursions to experience authentic Kenyan culture.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Cloud 9 B&B</h3>
+                    <p>Experience authentic Kenyan hospitality in the heart of Kirinyaga County. Your perfect getaway awaits at Cloud 9 Bed & Breakfast.</p>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="booking.html">Book a Room</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="login.html">Login</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contact Info</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> Along Nairobi-Nyeri Highway, Kibingoti, Kirinyaga County</li>
+                        <li><i class="fas fa-phone"></i> +254 713 042 748</li>
+                        <li><i class="fas fa-envelope"></i> info@cloud9bnbkenya.com</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2024 Cloud 9 Bed & Breakfast Kenya. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            document.querySelector('nav ul').classList.toggle('show');
+        });
+        
+        // Set minimum date for check-in to today
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('checkin').setAttribute('min', today);
+        
+        // Update checkout min date when checkin changes
+        document.getElementById('checkin').addEventListener('change', function() {
+            document.getElementById('checkout').setAttribute('min', this.value);
+        });
+        
+        // Form submission
+        document.getElementById('bookingForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your booking request! We will contact you shortly to confirm your reservation.');
+            this.reset();
+        });
+    </script>
+</body>
+</html>

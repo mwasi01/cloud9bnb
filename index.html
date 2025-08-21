@@ -1,1 +1,880 @@
-i
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cloud 9 Bed & Breakfast - Kirinyaga, Kenya</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500&display=swap">
+    <style>
+        :root {
+            --primary: #0D47A1;
+            --secondary: #90CAF9;
+            --accent: #E3F2FD;
+            --dark: #1565C0;
+            --light: #BBDEFB;
+            --text: #333;
+            --white: #ffffff;
+            --kenya-green: #006600;
+            --kenya-red: #CC0000;
+            --kenya-black: #000000;
+            --kenya-yellow: #FFFF00;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--accent);
+            color: var(--text);
+            line-height: 1.6;
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--kenya-black) 0%, var(--primary) 100%);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo img {
+            height: 60px;
+            transition: transform 0.3s;
+        }
+        
+        .logo img:hover {
+            transform: scale(1.05);
+        }
+        
+        .logo-text {
+            color: white;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+        }
+        
+        .logo-text span {
+            color: var(--kenya-yellow);
+        }
+        
+        .kenya-flag {
+            display: flex;
+            height: 10px;
+            margin-top: 5px;
+        }
+        
+        .kenya-flag div {
+            height: 100%;
+            flex: 1;
+        }
+        
+        .kenya-black {
+            background-color: var(--kenya-black);
+        }
+        
+        .kenya-red {
+            background-color: var(--kenya-red);
+        }
+        
+        .kenya-green {
+            background-color: var(--kenya-green);
+        }
+        
+        .kenya-white {
+            background-color: white;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin: 0 12px;
+        }
+        
+        nav ul li a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 12px;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+        
+        nav ul li a:hover {
+            background-color: var(--kenya-red);
+        }
+        
+        .menu-toggle {
+            display: none;
+            color: var(--white);
+            font-size: 24px;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero-section {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            color: var(--white);
+            text-align: center;
+            padding: 100px 20px;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero-section h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        .hero-section h1 .kenya {
+            color: var(--kenya-yellow);
+            font-style: italic;
+        }
+        
+        .hero-section p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .location-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--kenya-green) 0%, var(--kenya-black) 100%);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 30px;
+            margin-top: 20px;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        .location-badge i {
+            margin-right: 8px;
+            color: var(--kenya-yellow);
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 15px 30px;
+            background: linear-gradient(135deg, var(--kenya-green) 0%, var(--primary) 100%);
+            color: var(--white);
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* About Kenya Section */
+        .about-kenya {
+            padding: 60px 0;
+            background-color: var(--white);
+        }
+        
+        .about-kenya-content {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+        
+        .about-kenya-text {
+            flex: 1;
+        }
+        
+        .about-kenya-image {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .about-kenya-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            color: var(--primary);
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(to right, var(--kenya-black), var(--kenya-red), var(--kenya-green));
+        }
+        
+        /* Features Section */
+        .features {
+            padding: 60px 0;
+            text-align: center;
+            background-color: var(--accent);
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .feature-card {
+            background-color: var(--white);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--kenya-green);
+            margin-bottom: 20px;
+        }
+        
+        .feature-card h3 {
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+        
+        /* Rooms Gallery */
+        .rooms {
+            padding: 60px 0;
+            background: linear-gradient(to bottom, var(--light), var(--accent));
+        }
+        
+        .rooms-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .room-card {
+            background-color: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        
+        .room-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .room-image {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .room-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .room-card:hover .room-image img {
+            transform: scale(1.1);
+        }
+        
+        .room-details {
+            padding: 20px;
+        }
+        
+        .room-details h3 {
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+        
+        .room-price {
+            color: var(--kenya-green);
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin: 10px 0;
+        }
+        
+        /* Testimonials */
+        .testimonials {
+            padding: 60px 0;
+            text-align: center;
+            background-color: var(--white);
+        }
+        
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .testimonial-card {
+            background-color: var(--accent);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            text-align: left;
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 20px;
+            position: relative;
+            padding: 0 20px;
+        }
+        
+        .testimonial-text::before,
+        .testimonial-text::after {
+            content: '"';
+            font-size: 3rem;
+            color: var(--kenya-red);
+            position: absolute;
+            line-height: 1;
+        }
+        
+        .testimonial-text::before {
+            top: -10px;
+            left: 0;
+        }
+        
+        .testimonial-text::after {
+            bottom: -30px;
+            right: 0;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+        
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 15px;
+        }
+        
+        .author-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        /* Location Map */
+        .location-map {
+            padding: 60px 0;
+            background: linear-gradient(to bottom, var(--accent), var(--light));
+            text-align: center;
+        }
+        
+        .map-container {
+            margin-top: 30px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            height: 400px;
+        }
+        
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        /* Social Media */
+        .social-section {
+            padding: 60px 0;
+            background: linear-gradient(135deg, var(--kenya-black) 0%, var(--primary) 100%);
+            color: white;
+            text-align: center;
+        }
+        
+        .social-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .social-card {
+            width: 80px;
+            text-align: center;
+        }
+        
+        .social-icon {
+            display: inline-block;
+            width: 60px;
+            height: 60px;
+            line-height: 60px;
+            border-radius: 50%;
+            background-color: var(--kenya-red);
+            color: var(--white);
+            font-size: 24px;
+            margin-bottom: 10px;
+            transition: all 0.3s;
+        }
+        
+        .social-card a {
+            text-decoration: none;
+            color: var(--white);
+        }
+        
+        .social-icon:hover {
+            transform: translateY(-5px);
+            background-color: var(--kenya-yellow);
+            color: var(--kenya-black);
+        }
+        
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, var(--kenya-black) 0%, var(--kenya-green) 100%);
+            color: var(--white);
+            padding: 40px 0 20px;
+            text-align: center;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            text-align: left;
+            margin-bottom: 30px;
+        }
+        
+        .footer-column h3 {
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+            color: var(--kenya-yellow);
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--kenya-red);
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column ul li a {
+            color: var(--light);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: var(--kenya-yellow);
+            padding-left: 5px;
+        }
+        
+        .copyright {
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+            
+            nav ul {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: linear-gradient(135deg, var(--kenya-black) 0%, var(--primary) 100%);
+                padding: 20px;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+            }
+            
+            nav ul.show {
+                display: flex;
+            }
+            
+            nav ul li {
+                margin: 10px 0;
+            }
+            
+            .hero-section h1 {
+                font-size: 2.5rem;
+            }
+            
+            .about-kenya-content {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <img src="c9bnblogo.jpeg" alt="Cloud 9 Bed & Breakfast Logo">
+                <div>
+                    <div class="logo-text">Cloud <span>9</span></div>
+                    <div class="kenya-flag">
+                        <div class="kenya-black"></div>
+                        <div class="kenya-red"></div>
+                        <div class="kenya-green"></div>
+                        <div class="kenya-white"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+            
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="About.html">About Us</a></li>
+                    <li><a href="booking.html">Book a Room</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="login.html">Login</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container hero-content">
+            <h1>Experience Kenyan Hospitality at <span class="kenya">Cloud 9</span></h1>
+            <p>Your serene escape in the heart of Kirinyaga County. Enjoy the comfort, luxury, and authentic Kenyan experience of our premium accommodations.</p>
+            <a href="booking.html" class="btn">Book Your Stay Today</a>
+            <div class="location-badge">
+                <i class="fas fa-map-marker-alt"></i> Located in Kibingoti, along Nairobi-Nyeri Highway
+            </div>
+        </div>
+    </section>
+
+    <!-- About Kenya Section -->
+    <section class="about-kenya">
+        <div class="container">
+            <h2 class="section-title">Discover Kirinyaga's Hidden Gem</h2>
+            <div class="about-kenya-content">
+                <div class="about-kenya-text">
+                    <h3>Experience Authentic Kenya</h3>
+                    <p>Nestled in the beautiful landscapes of Kirinyaga County, Cloud 9 Bed & Breakfast offers a unique blend of modern comfort and authentic Kenyan culture. Our location along the Nairobi-Nyeri Highway makes us the perfect stopover for travelers exploring Central Kenya.</p>
+                    <p>Kirinyaga County is known for its fertile lands, beautiful scenery, and rich cultural heritage. From our doorstep, you can explore Mount Kenya's foothills, visit local coffee and tea plantations, or simply enjoy the tranquil atmosphere of the Kenyan countryside.</p>
+                    <p>At Cloud 9, we take pride in offering genuine Kenyan hospitality with a touch of luxury. Our staff are local experts who can help you plan excursions to nearby attractions and ensure your stay is truly memorable.</p>
+                </div>
+                <div class="about-kenya-image">
+                    <img src="downloadthiba falls.jpg" alt="Kirinyaga Landscape">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features container">
+        <h2 class="section-title">Why Choose Cloud 9</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-bed"></i>
+                </div>
+                <h3>Luxurious Rooms</h3>
+                <p>Indulge in our spacious, elegantly appointed rooms with premium bedding and stunning views of the Kenyan landscape.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-utensils"></i>
+                </div>
+                <h3>Authentic Kenyan Cuisine</h3>
+                <p>Start your day with our chef's special breakfast featuring local ingredients and traditional Kenyan flavors.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-mountain"></i>
+                </div>
+                <h3>Breathtaking Views</h3>
+                <p>Enjoy panoramic views of Kirinyaga's beautiful landscapes from our property's vantage point.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-map-marked-alt"></i>
+                </div>
+                <h3>Strategic Location</h3>
+                <p>Perfectly situated along the Nairobi-Nyeri Highway, we're an ideal base for exploring Central Kenya.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rooms Gallery -->
+    <section class="rooms">
+        <div class="container">
+            <h2 class="section-title">Our Accommodations</h2>
+            <div class="rooms-grid">
+                <div class="room-card">
+                    <div class="room-image">
+                        <img src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Deluxe Room">
+                    </div>
+                    <div class="room-details">
+                        <h3>Deluxe Room</h3>
+                        <p>Cozy and comfortable with a queen-sized bed and garden view. Perfect for solo travelers or couples.</p>
+                        <p class="room-price">From KES 5,500/night</p>
+                        <a href="booking.html" class="btn">Book Now</a>
+                    </div>
+                </div>
+                
+                <div class="room-card">
+                    <div class="room-image">
+                        <img src="https://images.unsplash.com/photo-1445019980597-93fa8acb246c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Executive Suite">
+                    </div>
+                    <div class="room-details">
+                        <h3>Executive Suite</h3>
+                        <p>Spacious suite with king-sized bed, sitting area, and mountain view. Includes complimentary breakfast.</p>
+                        <p class="room-price">From KES 8,900/night</p>
+                        <a href="booking.html" class="btn">Book Now</a>
+                    </div>
+                </div>
+                
+                <div class="room-card">
+                    <div class="room-image">
+                        <img src="https://images.unsplash.com/photo-1566665797739-1674de7a421a?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Family Villa">
+                    </div>
+                    <div class="room-details">
+                        <h3>Family Villa</h3>
+                        <p>Private villa with two bedrooms, separate living area, and panoramic views of the Kirinyaga landscape.</p>
+                        <p class="room-price">From KES 15,000/night</p>
+                        <a href="booking.html" class="btn">Book Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Location Map -->
+    <section class="location-map">
+        <div class="container">
+            <h2 class="section-title">Our Location</h2>
+            <p>Conveniently located in Kibingoti, Kirinyaga County along the Nairobi-Nyeri Highway</p>
+            <div class="map-container">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d63825.129066758875!2d37.28658234517741!3d-0.5992994333990653!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x18288c3d97a5d98b%3A0xcb4cb5d5c0c6320c!2sKibingoti%2C%20Kenya!5e0!3m2!1sen!2sus!4v1654567890123!5m2!1sen!2sus" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials container">
+        <h2 class="section-title">Guest Experiences</h2>
+        <div class="testimonial-grid">
+            <div class="testimonial-card">
+                <div class="testimonial-text">
+                    Our stay at Cloud 9 was absolutely magical. The views of Mount Kenya were breathtaking, the service was impeccable, and the breakfast was authentic Kenyan cuisine at its best. We can't wait to return!
+                </div>
+                <div class="testimonial-author">
+                    <div class="author-avatar">
+                        <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Sarah Johnson">
+                    </div>
+                    <div>
+                        <h4>Wanjiku Muthoni</h4>
+                        <p>Nairobi, Kenya</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="testimonial-card">
+                <div class="testimonial-text">
+                    The perfect stopover on our way to Nyeri! We loved the privacy, the luxurious room, and the attention to detail. The staff went above and beyond to make our anniversary special with local touches.
+                </div>
+                <div class="testimonial-author">
+                    <div class="author-avatar">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Michael Brown">
+                    </div>
+                    <div>
+                        <h4>James Kariuki</h4>
+                        <p>Mombasa, Kenya</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="testimonial-card">
+                <div class="testimonial-text">
+                    As an international traveler, I can confidently say Cloud 9 offers an authentic Kenyan experience with modern comforts. The balance of luxury and cultural authenticity is exceptional.
+                </div>
+                <div class="testimonial-author">
+                    <div class="author-avatar">
+                        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Emma Davis">
+                    </div>
+                    <div>
+                        <h4>Sophie Williams</h4>
+                        <p>London, UK</p>
+                    </div>https
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Media -->
+    <section class="social-section">
+        <div class="container">
+            <h2 class="section-title">Connect With Us</h2>
+            <div class="social-container">
+                <div class="social-card">
+                    <a href="https://facebook.com/cloud9bnb" target="_blank">
+                        <div class="social-icon">
+                            <i class="fab fa-facebook-f"></i>
+                        </div>
+                        <div>Facebook</div>
+                    </a>
+                </div>
+                
+                <div class="social-card">
+                    <a href="https://wa.me/254713042748" target="_blank">
+                        <div class="social-icon">
+                            <i class="fab fa-whatsapp"></i>
+                        </div>
+                        <div>WhatsApp</div>
+                    </a>
+                </div>
+                
+                <div class="social-card">
+                    <a href="https://instagram.com/cloud9bnb" target="_blank">
+                        <div class="social-icon">
+                            <i class="fab fa-instagram"></i>
+                        </div>
+                        <div>Instagram</div>
+                    </a>
+                </div>
+                
+                <div class="social-card">
+                    <a href="https://linkedin.com/company/cloud9bnb" target="_blank">
+                        <div class="social-icon">
+                            <i class="fab fa-linkedin-in"></i>
+                        </div>
+                        <div>LinkedIn</div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Cloud 9 B&B</h3>
+                    <p>Experience authentic Kenyan hospitality in the heart of Kirinyaga County. Your perfect getaway awaits at Cloud 9 Bed & Breakfast.</p>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="About.html">About Us</a></li>
+                        <li><a href="booking.html">Book a Room</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="login.html">Login</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contact Info</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> Along Nairobi-Nyeri Highway, Kibingoti, Kirinyaga County</li>
+                        <li><i class="fas fa-phone"></i> +254 713 042 748</li>
+                        <li><i class="fas fa-envelope"></i> info@cloud9bnbkenya.com</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2024 Cloud 9 Bed & Breakfast Kenya. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            document.querySelector('nav ul').classList.toggle('show');
+        });
+    </script>
+</body>
+</html>
